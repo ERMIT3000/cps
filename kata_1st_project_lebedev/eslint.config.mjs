@@ -1,33 +1,28 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import { createRequire } from 'node:module';
+import js from "@eslint/js";
+import globals from "globals";
+import { defineConfig } from "eslint/config";
 
-const require = createRequire(import.meta.url);
-const prettierRecommended = require('eslint-plugin-prettier/recommended');
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
+  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
 
-export default [
-    {
-        ignores: [
-            'node_modules/**',
-            'dist/**',
-            'webpack.config.js',
-            'postcss.config.js',
-        ],
-    },
-    js.configs.recommended,
-    {
-        files: ['js/**/*.js', 'src/**/*.js'],
-        languageOptions: {
-            globals: {
-                ...globals.browser,
-                Swiper: 'readonly',
-            },
-            ecmaVersion: 2022,
-            sourceType: 'module',
-        },
-    },
-    {
-        ...prettierRecommended,
-        files: ['js/**/*.js', 'src/**/*.js'],
-    },
-];
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}]);
