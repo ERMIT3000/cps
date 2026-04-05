@@ -3,12 +3,16 @@
     padding: 40px var(--content-padding);
 }
 
-.section--brands {
+.section--brands,
+.section--equipment,
+.section--prices {
     padding-top: 0;
     background: var(--background-main);
 }
 
-.brands-section__heading-bar {
+.brands-section__heading-bar,
+.equipment-section__heading-bar,
+.prices-section__heading-bar {
     --bh-pad: var(--content-padding);
     margin-left: calc(-1 * var(--bh-pad));
     margin-right: calc(-1 * var(--bh-pad));
@@ -20,7 +24,9 @@
     border-top: 1px solid var(--teal);
 }
 
-.brands-section__heading {
+.brands-section__heading,
+.equipment-section__heading,
+.prices-section__heading {
     margin: 0;
     max-width: none;
     font-size: 16px;

@@ -1,0 +1,165 @@
+/* Секция «Ремонт различных видов техники»: моб. Swiper, планшет 3 колонки, десктоп 4 */
+.equipment-section__shell {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.equipment-swiper {
+    overflow: hidden;
+    padding-bottom: 32px;
+    margin: 0;
+}
+
+.equipment-swiper .swiper-slide {
+    display: flex;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.equipment-swiper .swiper-slide.swiper-slide--hidden {
+    display: none !important;
+}
+
+.equipment-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 160px;
+    padding: 16px 16px 14px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.15px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    box-sizing: border-box;
+}
+
+.equipment-card:hover,
+.equipment-card:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    outline: none;
+}
+
+.equipment-card__title {
+    margin: 0;
+    padding: 0;
+    align-self: flex-start;
+}
+
+.equipment-card__go {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: auto;
+    align-self: flex-end;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.equipment-card__go::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-left: -2px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 767px) {
+    .equipment-section .equipment-section__shell {
+        margin-left: calc(-1 * var(--content-padding));
+        margin-right: calc(-1 * var(--content-padding));
+        width: calc(100% + 2 * var(--content-padding));
+    }
+
+    .equipment-swiper {
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
+        padding-bottom: 40px;
+        overflow: hidden;
+    }
+
+    .equipment-swiper .swiper-slide {
+        width: min(272px, calc(100vw - 64px));
+    }
+
+    .equipment-swiper .equipment-card {
+        min-height: 160px;
+    }
+
+    .equipment-swiper .swiper-pagination {
+        bottom: 8px;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .equipment-swiper .swiper-pagination-bullet {
+        width: 7px;
+        height: 7px;
+        margin: 0 3px !important;
+        background: #e8e8e8;
+        opacity: 1;
+    }
+
+    .equipment-swiper .swiper-pagination-bullet-active {
+        background: #95959a;
+        transform: none;
+    }
+
+    .equipment-swiper__pagination--off {
+        display: none !important;
+    }
+
+    .equipment-section--grid .swiper-pagination {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .equipment-swiper {
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        overflow: visible;
+    }
+
+    .equipment-section--grid .equipment-swiper .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        transform: none !important;
+    }
+
+    .equipment-section--grid .equipment-swiper .swiper-slide {
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .equipment-section--grid .swiper-pagination {
+        display: none;
+    }
+}
+
+@media (min-width: 1120px) {
+    .equipment-section--grid .equipment-swiper .swiper-wrapper {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 32px;
+    }
+}

@@ -26,6 +26,10 @@
 }
 
 @media (max-width: 767px) {
+    .main__nav-wrapper {
+        padding-bottom: 20px;
+    }
+
     .header__brand-inner {
         justify-content: flex-end;
         gap: 0;
@@ -210,14 +214,17 @@
         padding-left: 0;
     }
 
-    .brands-expand {
+    .brands-expand,
+    .equipment-expand {
         width: auto;
         min-width: 296px;
         margin-left: 0;
         margin-right: auto;
     }
 
-    .brands-section__heading-bar {
+    .brands-section__heading-bar,
+    .equipment-section__heading-bar,
+    .prices-section__heading-bar {
         --bh-pad: var(--content-padding-md);
     }
 
@@ -240,7 +247,7 @@
         width: 100%;
         position: relative;
         overflow: hidden;
-        padding: 0 0 24px;
+        padding: 0 0 14px;
         margin-left: 0;
     }
 
@@ -299,7 +306,9 @@
         display: none;
     }
 
-    .brands-section__heading-bar {
+    .brands-section__heading-bar,
+    .equipment-section__heading-bar,
+    .prices-section__heading-bar {
         --bh-pad: var(--content-padding-lg);
     }
 
@@ -443,7 +452,6 @@
 
     .main__highlight {
         z-index: 2;
-        border-bottom: 1px solid var(--teal);
         /* на всю ширину области справа от сайдбара; сброс мобильного full-bleed из layout-main */
         margin-left: 0;
         padding-left: 0;
@@ -467,6 +475,7 @@
         width: 100%;
         padding-left: 0;
         padding-right: var(--content-padding-lg);
+        padding-bottom: 12px;
     }
 
     .main__nav-wrapper::before,
@@ -508,27 +517,27 @@
     .main__content {
         width: var(--container-width-lg);
         max-width: 100%;
-        min-height: 360px;
-        margin-top: 28px;
+        min-height: 0;
+        margin-top: 12px;
         box-sizing: border-box;
     }
 
     .main__content .content {
-        min-height: 360px;
-        align-items: stretch;
+        min-height: 0;
+        align-items: flex-start;
         min-width: 0;
     }
 
     .main__content .content__column {
-        align-self: stretch;
+        align-self: flex-start;
         min-height: 0;
     }
 
+    /* как на планшете/мобиле: кнопка сразу под текстом, без растягивания блока */
     .main__content .content__texts {
-        flex: 1 1 0;
+        flex: 0 1 auto;
         min-height: 0;
-        max-height: none;
-        overflow-y: auto;
+        overflow-y: visible;
     }
 
     .content {

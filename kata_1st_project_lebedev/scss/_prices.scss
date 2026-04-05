@@ -1,0 +1,366 @@
+/* Секция «Цены на услуги» */
+.prices-section__shell {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.prices-section__desk {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.prices-section__mob {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .prices-section__mob {
+        display: block;
+    }
+
+    .prices-section__desk {
+        display: none;
+    }
+
+    .prices-section .prices-section__mob {
+        margin-left: calc(-1 * var(--content-padding));
+        margin-right: calc(-1 * var(--content-padding));
+        width: calc(100% + 2 * var(--content-padding));
+    }
+
+    .prices-swiper {
+        overflow: hidden;
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
+        padding-bottom: 40px;
+        margin: 0;
+    }
+
+    .prices-swiper .swiper-slide {
+        display: flex;
+        align-items: stretch;
+        height: auto;
+        box-sizing: border-box;
+        width: min(272px, calc(100vw - 64px));
+    }
+
+    .prices-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+        padding: 14px 14px 12px;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        border: 1px solid var(--border-light);
+        box-sizing: border-box;
+    }
+
+    .prices-card__main {
+        flex: 1 1 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+    }
+
+    .prices-card__block {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .prices-card__main > .prices-card__block:first-child {
+        flex: 1 1 0;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .prices-card__label {
+        display: block;
+        margin: 0 0 2px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--nav-link-color);
+    }
+
+    .prices-card__value {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.45;
+        color: var(--text-color);
+    }
+
+    .prices-card__value--title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        line-height: 1.35;
+    }
+
+    .prices-card__bottom {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 8px;
+        flex-shrink: 0;
+        padding-top: 8px;
+        width: 100%;
+    }
+
+    .prices-card__term {
+        min-width: 0;
+        flex: 0 1 auto;
+        max-width: calc(100% - 140px);
+    }
+
+    .prices-card__term .prices-card__label {
+        margin-bottom: 2px;
+    }
+
+    .prices-card__term .prices-card__value {
+        line-height: 1.35;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .prices-card .prices-order-btn {
+        flex-shrink: 0;
+        margin-left: auto;
+        align-self: flex-end;
+        min-width: 0;
+        padding: 8px 14px 8px 16px;
+        gap: 12px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+    }
+
+    .prices-swiper .swiper-pagination {
+        bottom: 8px;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .prices-swiper .swiper-pagination-bullet {
+        width: 7px;
+        height: 7px;
+        margin: 0 3px !important;
+        background: #e8e8e8;
+        opacity: 1;
+    }
+
+    .prices-swiper .swiper-pagination-bullet-active {
+        background: #95959a;
+        transform: none;
+    }
+}
+
+/* Заголовки колонок на сером фоне, над белой панелью */
+.prices-section__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(4.5rem, 0.85fr) minmax(5rem, 0.95fr) auto;
+    gap: 0 16px;
+    align-items: end;
+    padding: 0 var(--content-padding);
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--nav-link-color);
+}
+
+.prices-head__label--action {
+    justify-self: end;
+    min-width: 0;
+}
+
+.prices-section__panel {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 20px var(--content-padding) 24px;
+    box-sizing: border-box;
+}
+
+.prices-section__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-left: calc(-1 * var(--content-padding));
+    margin-right: calc(-1 * var(--content-padding));
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+}
+
+.prices-table {
+    width: 100%;
+    min-width: 560px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--text-color);
+}
+
+.prices-table__col--service {
+    width: 46%;
+}
+
+.prices-table__col--price {
+    width: 14%;
+}
+
+.prices-table__col--time {
+    width: 18%;
+}
+
+.prices-table__col--action {
+    width: 22%;
+}
+
+.prices-table tbody td {
+    padding: 16px 12px 16px 0;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-light);
+    word-wrap: break-word;
+}
+
+.prices-table tbody td:nth-child(2),
+.prices-table tbody td:nth-child(3) {
+    white-space: nowrap;
+}
+
+.prices-table tbody td:last-child {
+    padding-right: 0;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.prices-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.prices-order-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-width: 148px;
+    padding: 11px 20px 11px 22px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: background-color 0.25s ease;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.prices-order-btn:hover,
+.prices-order-btn:focus-visible {
+    background: var(--accent-hover);
+    outline: none;
+}
+
+.prices-order-btn__label {
+    flex-shrink: 0;
+}
+
+.prices-order-btn__chev {
+    flex-shrink: 0;
+    display: block;
+    width: 7px;
+    height: 7px;
+    margin-left: 4px;
+    border: none;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.prices-order-btn__chev::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-left: -2px;
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+    transform: rotate(-45deg);
+}
+
+.prices-section__note {
+    margin: 0;
+    max-width: 52rem;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--nav-link-color);
+}
+
+.prices-section__proposal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.prices-section__proposal:hover,
+.prices-section__proposal:focus-visible {
+    color: var(--accent);
+    outline: none;
+}
+
+.prices-section__proposal::after {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: 1px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+    .prices-section__head {
+        padding: 0 24px;
+        grid-template-columns: minmax(0, 1fr) minmax(5rem, 0.75fr) minmax(5.5rem, 0.85fr) auto;
+    }
+
+    .prices-section__panel {
+        padding: 24px 24px 28px;
+    }
+
+    .prices-section__scroll {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        overflow-x: visible;
+    }
+
+    .prices-table {
+        min-width: 0;
+    }
+}
