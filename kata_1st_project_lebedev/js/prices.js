@@ -1,9 +1,11 @@
+import { BP_MOBILE_MAX } from './breakpoints.js';
+
 (function () {
     const section = document.querySelector('[data-prices]');
     const swiperEl = section?.querySelector('.prices-swiper');
     if (!section || !swiperEl) return;
 
-    const MOBILE_MAX = 767;
+    const MOBILE_MAX = BP_MOBILE_MAX;
     let swiper = null;
 
     function destroySwiper() {

@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 /* Блок брендов + Swiper */
 .brands-section__shell {
     display: flex;
@@ -95,7 +97,7 @@
     transform: rotate(-45deg);
 }
 
-@media (max-width: 767px) {
+@media (max-width: #{$bp-mobile-max}) {
     .section--brands {
         padding-top: 0;
         padding-bottom: 28px;
@@ -161,7 +163,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: #{$bp-tablet-min}) {
     .brands-swiper {
         padding-bottom: 0;
         padding-left: 0;
@@ -190,7 +192,7 @@
     }
 }
 
-@media (min-width: 1120px) {
+@media (min-width: #{$bp-desktop-min}) {
     .brands-section--grid .brands-swiper .swiper-wrapper {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 32px;

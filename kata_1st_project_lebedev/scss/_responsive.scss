@@ -1,5 +1,7 @@
+@use 'variables' as *;
+
 /* Адаптивные @media (все брейкпоинты) */
-@media (max-width: 1119px) {
+@media (max-width: #{$bp-tablet-max}) {
     html,
     body {
         width: 100%;
@@ -26,7 +28,7 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: #{$bp-mobile-max}) {
     .header__brand-inner {
         justify-content: flex-end;
         gap: 0;
@@ -114,7 +116,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: #{$bp-tablet-min}) {
     :root {
         --header-h: 88px;
     }
@@ -260,7 +262,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1119px) {
+@media (min-width: #{$bp-tablet-min}) and (max-width: #{$bp-tablet-max}) {
     .main__uslugi {
         font-size: 28px;
         line-height: 40px;
@@ -308,7 +310,7 @@
     }
 }
 
-@media (min-width: 1120px) {
+@media (min-width: #{$bp-desktop-min}) {
     body {
         padding-left: var(--sidebar-w);
     }
@@ -382,7 +384,8 @@
         padding-top: 0;
         max-width: var(--container-width-lg);
         width: 100%;
-        margin-left: 0;
+        /* Центрирование колонки контента на широких экранах (сайдбар фиксирован слева) */
+        margin-left: max(0px, calc((100vw - var(--sidebar-w) - var(--container-width-lg)) / 2));
         margin-right: auto;
         box-sizing: border-box;
         background: transparent;

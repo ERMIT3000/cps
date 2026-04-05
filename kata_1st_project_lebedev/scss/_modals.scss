@@ -1,9 +1,11 @@
+@use 'variables' as *;
+
 /* Затемнение при открытом drawer; модальные панели справа */
 .aside-backdrop {
     display: none;
 }
 
-@media (max-width: 1119px) {
+@media (max-width: #{$bp-tablet-max}) {
     .aside-backdrop {
         display: block;
         position: fixed;
@@ -107,7 +109,7 @@ body.body--modal-open {
     flex-direction: column;
 }
 
-@media (min-width: 1120px) {
+@media (min-width: #{$bp-desktop-min}) {
     .modal__panel {
         width: 440px;
         max-width: 440px;

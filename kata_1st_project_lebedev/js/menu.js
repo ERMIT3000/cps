@@ -1,6 +1,8 @@
+import { BP_DESKTOP_MIN } from './breakpoints.js';
+
 (function () {
     function isDesktop() {
-        return window.matchMedia('(min-width: 1120px)').matches;
+        return window.matchMedia(`(min-width: ${BP_DESKTOP_MIN}px)`).matches;
     }
 
     function initMenu() {

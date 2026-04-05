@@ -1,3 +1,5 @@
+import { BP_DESKTOP_MIN, BP_MOBILE_MAX } from './breakpoints.js';
+
 (function () {
     const section = document.querySelector('[data-equipment]');
     if (!section) return;
@@ -7,7 +9,7 @@
     const btn = section.querySelector('[data-equipment-toggle]');
     const labelEl = btn?.querySelector('[data-expand-label]');
 
-    const MOBILE_MAX = 767;
+    const MOBILE_MAX = BP_MOBILE_MAX;
     const MOBILE_SLIDE_COUNT = 9;
     const LIMIT_TABLET = 3;
     const LIMIT_DESKTOP = 4;
@@ -19,7 +21,7 @@
     function getLimit() {
         const w = window.innerWidth;
         if (w <= MOBILE_MAX) return Number.POSITIVE_INFINITY;
-        if (w < 1120) return LIMIT_TABLET;
+        if (w < BP_DESKTOP_MIN) return LIMIT_TABLET;
         return LIMIT_DESKTOP;
     }
 

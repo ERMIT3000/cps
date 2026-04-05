@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 /* Сброс, body, .container */
 * {
     box-sizing: border-box;
@@ -30,14 +32,14 @@ body {
     padding-right: var(--content-padding);
 }
 
-@media (min-width: 768px) {
+@media (min-width: #{$bp-tablet-min}) {
     .container {
         padding-left: var(--content-padding-md);
         padding-right: var(--content-padding-md);
     }
 }
 
-@media (min-width: 1120px) {
+@media (min-width: #{$bp-desktop-min}) {
     .container {
         padding-left: var(--content-padding-lg);
         padding-right: var(--content-padding-lg);
