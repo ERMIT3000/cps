@@ -1,0 +1,12 @@
+/* Точка входа: normalize → токены → модули */
+
+@use 'variables';
+@use 'fonts';
+@use 'base';
+@use 'ui-round-icon';
+@use 'layout-header';
+@use 'layout-aside';
+@use 'layout-main';
+@use 'sections';
+@use 'brands';
+@use 'responsive';

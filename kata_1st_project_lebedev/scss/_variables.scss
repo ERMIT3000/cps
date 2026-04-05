@@ -1,0 +1,50 @@
+/* SCSS-переменные + проброс в :root для существующих var(--*) */
+
+$background-main: #f8f8f8;
+$text-color: #1b1c21;
+$nav-link-color: #7e7e82;
+$highlight-border: #b8ffec;
+$white: #ffffff;
+$footer-bg: #1b1c21;
+$accent: #ff3e79;
+$accent-hover: #e02e5f;
+$teal: #41f6d7;
+$link-muted-hover: #6f6f6f;
+$border-light: #eaeaea;
+
+$content-max-width: 1440px;
+$content-padding: 24px;
+$content-padding-md: 24px;
+$content-padding-lg: 24px;
+$container-width-sm: 768px;
+$container-width-md: 768px;
+$container-width-lg: 1120px;
+$sidebar-w: 320px;
+$header-h: 72px;
+
+:root {
+    --background-main: #{$background-main};
+    --text-color: #{$text-color};
+    --nav-link-color: #{$nav-link-color};
+    --highlight-border: #{$highlight-border};
+    --white: #{$white};
+    --footer-bg: #{$footer-bg};
+    --accent: #{$accent};
+    --accent-hover: #{$accent-hover};
+    --teal: #{$teal};
+    --link-muted-hover: #{$link-muted-hover};
+    --border-light: #{$border-light};
+    --content-max-width: #{$content-max-width};
+    --content-padding: #{$content-padding};
+    --content-padding-md: #{$content-padding-md};
+    --content-padding-lg: #{$content-padding-lg};
+    --container-width-sm: #{$container-width-sm};
+    --container-width-md: #{$container-width-md};
+    --container-width-lg: #{$container-width-lg};
+    --sidebar-w: #{$sidebar-w};
+    --sm-x: clamp(16px, 4vw, 24px);
+    --sm-inset: clamp(12px, 3vw, 20px);
+    --sm-py: clamp(4px, 1.1vh, 10px);
+    --sm-strip: clamp(4px, 1vh, 10px);
+    --header-h: #{$header-h};
+}
