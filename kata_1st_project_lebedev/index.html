@@ -39,12 +39,12 @@
                     <li class="header__nav-group">
                         <ul class="header__nav-group-list">
                             <li class="header__nav-item">
-                                <button type="button" class="header__nav-btn round-icon round-icon--call" aria-label="Позвонить">
+                                <button type="button" class="header__nav-btn round-icon round-icon--call" data-open-modal="order-call" aria-label="Заказать звонок">
                                     <span class="round-icon__icon" aria-hidden="true"></span>
                                 </button>
                             </li>
                             <li class="header__nav-item">
-                                <button type="button" class="header__nav-btn round-icon round-icon--chat" aria-label="Написать">
+                                <button type="button" class="header__nav-btn round-icon round-icon--chat" data-open-modal="feedback" aria-label="Обратная связь">
                                     <span class="round-icon__icon" aria-hidden="true"></span>
                                 </button>
                             </li>
@@ -93,8 +93,8 @@
         </nav>
         <footer class="aside-menu__footer">
             <div class="aside-menu__actions">
-                <a href="tel:+78008908900" class="aside-menu__action round-icon round-icon--call" aria-label="Позвонить"><span class="round-icon__icon" aria-hidden="true"></span></a>
-                <a href="#" class="aside-menu__action round-icon round-icon--chat" aria-label="Написать"><span class="round-icon__icon" aria-hidden="true"></span></a>
+                <button type="button" class="aside-menu__action round-icon round-icon--call" data-open-modal="order-call" aria-label="Заказать звонок"><span class="round-icon__icon" aria-hidden="true"></span></button>
+                <button type="button" class="aside-menu__action round-icon round-icon--chat" data-open-modal="feedback" aria-label="Обратная связь"><span class="round-icon__icon" aria-hidden="true"></span></button>
                 <a href="#" class="aside-menu__action round-icon round-icon--profile" aria-label="Профиль"><span class="round-icon__icon" aria-hidden="true"></span></a>
             </div>
             <div class="aside-menu__contacts">
@@ -108,6 +108,79 @@
             </div>
         </footer>
     </aside>
+
+    <div class="aside-backdrop" id="aside-backdrop" aria-hidden="true" tabindex="-1"></div>
+
+    <div class="modal" id="modal-order-call" role="dialog" aria-modal="true" aria-labelledby="modal-order-call-title" aria-hidden="true">
+        <div class="modal__backdrop" data-modal-close tabindex="-1"></div>
+        <div class="modal__panel">
+            <button type="button" class="modal__close round-icon round-icon--modal-close" data-modal-close aria-label="Закрыть">
+                <span class="round-icon__icon" aria-hidden="true"></span>
+            </button>
+            <div class="modal__inner">
+                <div class="modal__title-block">
+                    <svg class="modal__highlight-accent" width="4" height="40" viewBox="0 0 4 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4C4 1.79086 2.20914 0 0 0V40C2.20914 40 4 38.2091 4 36V4Z" fill="#41F6D7"/>
+                    </svg>
+                    <h2 class="modal__title" id="modal-order-call-title">Заказать звонок</h2>
+                </div>
+                <form class="modal__form" id="form-order-call" novalidate>
+                    <div class="modal__field">
+                        <input class="modal__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" aria-label="Телефон" required>
+                    </div>
+                    <p class="modal__legal">Нажимая «Отправить», вы даете согласие на <a href="#" class="modal__legal-link">обработку персональных данных</a> и соглашаетесь с нашей <a href="#" class="modal__legal-link">политикой конфиденциальности</a>.</p>
+                    <div class="modal__actions">
+                        <button type="submit" class="modal__submit">
+                            <span>Отправить</span>
+                            <svg class="modal__submit-icon" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-feedback" role="dialog" aria-modal="true" aria-labelledby="modal-feedback-title" aria-hidden="true">
+        <div class="modal__backdrop" data-modal-close tabindex="-1"></div>
+        <div class="modal__panel">
+            <button type="button" class="modal__close round-icon round-icon--modal-close" data-modal-close aria-label="Закрыть">
+                <span class="round-icon__icon" aria-hidden="true"></span>
+            </button>
+            <div class="modal__inner">
+                <div class="modal__title-block">
+                    <svg class="modal__highlight-accent" width="4" height="40" viewBox="0 0 4 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4C4 1.79086 2.20914 0 0 0V40C2.20914 40 4 38.2091 4 36V4Z" fill="#41F6D7"/>
+                    </svg>
+                    <h2 class="modal__title" id="modal-feedback-title">Обратная связь</h2>
+                </div>
+                <form class="modal__form" id="form-feedback" novalidate>
+                    <div class="modal__field">
+                        <input class="modal__input" type="text" name="name" placeholder="Имя" autocomplete="name" aria-label="Имя" required>
+                    </div>
+                    <div class="modal__field">
+                        <input class="modal__input" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" aria-label="Телефон" required>
+                    </div>
+                    <div class="modal__field">
+                        <input class="modal__input" type="email" name="email" placeholder="Электронная почта" autocomplete="email" aria-label="Электронная почта" required>
+                    </div>
+                    <div class="modal__field">
+                        <textarea class="modal__input modal__input--textarea" name="message" placeholder="Сообщение" rows="4" aria-label="Сообщение" required></textarea>
+                    </div>
+                    <p class="modal__legal">Нажимая «Отправить», вы даете согласие на <a href="#" class="modal__legal-link">обработку персональных данных</a> и соглашаетесь с нашей <a href="#" class="modal__legal-link">политикой конфиденциальности</a>.</p>
+                    <div class="modal__actions">
+                        <button type="submit" class="modal__submit">
+                            <span>Отправить</span>
+                            <svg class="modal__submit-icon" width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <main class="main">
         <div class="main__container">

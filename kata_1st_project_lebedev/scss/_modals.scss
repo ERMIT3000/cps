@@ -1,0 +1,269 @@
+/* Затемнение при открытом drawer; модальные панели справа */
+.aside-backdrop {
+    display: none;
+}
+
+@media (max-width: 1119px) {
+    .aside-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1215;
+        background: rgba(255, 255, 255, 0.88);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+            opacity 0.35s ease,
+            visibility 0.35s ease;
+    }
+
+    .aside-backdrop.aside-backdrop--visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+body.body--aside-open,
+body.body--modal-open {
+    overflow: hidden;
+}
+
+.round-icon--modal-close .round-icon__icon {
+    background-image: url('../pics/icons/cross.svg');
+}
+
+.modal__close.round-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.modal.modal--open {
+    display: block;
+    pointer-events: auto;
+}
+
+.modal__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
+.modal__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: min(320px, 100%);
+    max-width: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    background: var(--white);
+    border-left: 1px solid var(--teal);
+    box-shadow:
+        -6px 0 24px rgba(0, 0, 0, 0.1),
+        -2px 0 10px rgba(0, 0, 0, 0.06);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    /* visible — иначе обрезается .modal__close с right: calc(100% + 12px) на десктопе */
+    overflow: visible;
+}
+
+.modal.modal--open .modal__panel {
+    transform: translateX(0);
+}
+
+.modal__close {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    z-index: 3;
+}
+
+.modal__inner {
+    --modal-pad-x: 28px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 82px 24px 28px var(--modal-pad-x);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1120px) {
+    .modal__panel {
+        width: 440px;
+        max-width: 440px;
+    }
+
+    .modal__close {
+        top: 28px;
+        left: auto;
+        right: calc(100% + 12px);
+    }
+
+    .modal__inner {
+        padding-top: 28px;
+    }
+}
+
+.modal__title-block {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 0 24px;
+    margin-left: calc(-1 * var(--modal-pad-x, 28px));
+    width: calc(100% + var(--modal-pad-x, 28px));
+    box-sizing: border-box;
+}
+
+.modal__highlight-accent {
+    flex-shrink: 0;
+    display: block;
+}
+
+.modal__title {
+    margin: 0;
+    margin-left: calc(var(--modal-pad-x, 28px) - 4px);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+}
+
+.modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+}
+
+.modal__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--text-color);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--white);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.modal__input::placeholder {
+    color: var(--nav-link-color);
+}
+
+.modal__input:hover {
+    outline: none;
+    border-color: #c5ebe4;
+}
+
+.modal__input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 2px rgba(65, 246, 215, 0.22);
+}
+
+.modal__input--textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.modal__legal {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--nav-link-color);
+}
+
+.modal__legal-link {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.modal__legal-link:hover,
+.modal__legal-link:focus-visible {
+    color: var(--accent-hover);
+    outline: none;
+}
+
+.modal__actions {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px 12px 24px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--white);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.modal__submit:hover,
+.modal__submit:focus-visible {
+    background: var(--accent-hover);
+    outline: none;
+}
+
+.modal__submit-icon {
+    flex-shrink: 0;
+    display: block;
+}
+
+@media (max-width: 420px) {
+    .modal__inner {
+        --modal-pad-x: 20px;
+        padding-right: 20px;
+    }
+
+    .modal__close {
+        left: 12px;
+    }
+}
