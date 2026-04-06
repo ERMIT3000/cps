@@ -1,1 +1,1 @@
- Лебедев Александр Александрович https://ermit3000.github.io/kata_1st_project_lebedev/
+ Лебедев Александр Александрович https://ermit3000.github.io/git1/
