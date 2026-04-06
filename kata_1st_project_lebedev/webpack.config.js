@@ -39,7 +39,13 @@ function productionPublicPath() {
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
-  const publicPath = isProd ? productionPublicPath() : '/';
+  /**
+   * dev: '/' для devServer.
+   * prod: 'auto' — webpack подставляет относительные URL к бандлу; работает на GitHub Pages
+   * в подпапке (/cps/) без привязки к имени репо в путях. Явный /cps/ ломается, если кэш/Jekyll/старый деплой.
+   */
+  const publicPath = isProd ? 'auto' : '/';
+  const baseHref = isProd ? productionPublicPath() : false;
 
   return {
     entry: './src/entry.js',
@@ -99,6 +105,11 @@ module.exports = (env, argv) => {
         inject: 'body',
         /* true в production даёт одну строку; false — читаемый HTML в dist */
         minify: false,
+        ...(baseHref
+          ? {
+              base: typeof baseHref === 'string' && baseHref !== '/' ? { href: baseHref } : false,
+            }
+          : {}),
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
@@ -111,6 +122,11 @@ module.exports = (env, argv) => {
             globOptions: {
               ignore: ['**/.DS_Store'],
             },
+          },
+          {
+            from: path.resolve(__dirname, 'public/nojekyll-placeholder'),
+            to: '.nojekyll',
+            toType: 'file',
           },
         ],
       }),
