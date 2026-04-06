@@ -2,14 +2,13 @@
   "name": "kata-1st-project-lebedev",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://ermit3000.github.io/kata-1st-project-lebedev",
+  "homepage": "https://ermit3000.github.io/cps",
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "deploy:repo-git1": "WEBPACK_PUBLIC_PATH=/git1/ npm run build && gh-pages -d dist",
     "lint": "eslint ."
   },
   "browserslist": [
