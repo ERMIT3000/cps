@@ -1,12 +1,17 @@
 /* Главный экран: блоки main, main-highlight, content, read-more */
+main {
+    padding-top: calc(var(--header-h) + 8px);
+    background: var(--background-main);
+}
+
 .main__container {
     position: relative !important;
     width: 100%;
     min-height: 60vh;
     height: auto !important;
-    padding-top: calc(var(--header-h) + 8px);
+    padding-top: 0;
     padding-bottom: 40px;
-    background: var(--background-main);
+    background: transparent;
     overflow-x: hidden;
 }
 
@@ -129,9 +134,12 @@
     line-height: 1.5;
 }
 
-.content__text--continuation-snippet,
 .content__text--continuation-full {
     display: none;
+}
+
+.content__texts--expanded .content__text--continuation-full {
+    display: block;
 }
 
 .read-more-btn {
@@ -161,6 +169,12 @@
 .read-more-btn__icon {
     flex-shrink: 0;
     vertical-align: middle;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn--expanded .read-more-btn__icon {
+    transform: rotate(180deg);
 }
 
 /* pic1120.jpg 532×307 */

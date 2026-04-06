@@ -25,7 +25,7 @@ $header-h: 72px;
 /* Макет: 320 / 768 / 1440; десктопная сетка — от типичной ширины бюджетного ноутбука */
 $bp-mobile-max: 767px;
 $bp-tablet-min: 768px;
-$bp-desktop-min: 1366px;
+$bp-desktop-min: 1120px;
 $bp-tablet-max: $bp-desktop-min - 1px;
 
 :root {

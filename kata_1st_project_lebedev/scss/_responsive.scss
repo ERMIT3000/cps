@@ -190,7 +190,6 @@
     }
 
     .main__container {
-        padding-top: calc(var(--header-h) + 8px);
         padding-bottom: 32px;
         min-height: 0;
     }
@@ -202,14 +201,6 @@
         padding: 0 var(--content-padding-md) 40px;
         min-width: 0;
         box-sizing: border-box;
-    }
-
-    .content__text--continuation-snippet {
-        display: block;
-    }
-
-    .content__text--continuation-full {
-        display: none;
     }
 
     .content__column {
@@ -367,6 +358,7 @@
 
     main {
         margin-top: 0;
+        padding-top: 0;
         background: var(--background-main);
     }
 
@@ -374,8 +366,8 @@
         padding-top: 0;
         max-width: var(--container-width-lg);
         width: 100%;
-        /* Центрирование колонки контента на широких экранах (сайдбар фиксирован слева) */
-        margin-left: max(0px, calc((100vw - var(--sidebar-w) - var(--container-width-lg)) / 2));
+        /* Центрирование без 100vw — стабильнее при зуме браузера */
+        margin-left: auto;
         margin-right: auto;
         box-sizing: border-box;
         background: transparent;
@@ -385,20 +377,27 @@
 
     .main-highlight__inner {
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 24px;
         min-height: 72px;
         padding-left: 0;
-        padding-right: 33px;
+        padding-right: var(--content-padding-lg);
         box-sizing: border-box;
+    }
+
+    .main-highlight__title-block {
+        min-width: 0;
+        flex: 1 1 220px;
     }
 
     .main-highlight__actions {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        flex-shrink: 0;
+        flex: 0 1 auto;
+        min-width: 0;
     }
 
     .main-highlight__actions-list {
@@ -414,6 +413,8 @@
         display: flex;
         align-items: center;
         text-decoration: none;
+        min-width: 0;
+        gap: 8px;
     }
 
     .main-highlight__actions-text {
@@ -422,7 +423,9 @@
         line-height: 24px;
         letter-spacing: -0.2px;
         color: var(--text-color);
-        margin-right: 8px;
+        margin-right: 0;
+        white-space: normal;
+        overflow-wrap: break-word;
     }
 
     .main-highlight__actions-icon {
@@ -457,22 +460,27 @@
         position: relative;
         z-index: 2;
         border-bottom: none;
-        /* Выровнять по левому краю main (у сайдбара), минуя отступ центрирования контейнера */
-        --main-content-shift: max(0px, calc((100vw - var(--sidebar-w) - var(--container-width-lg)) / 2));
-        margin-left: calc(-1 * var(--main-content-shift));
-        width: calc(100% + var(--main-content-shift));
-        box-sizing: border-box;
-    }
-
-    .main__nav-wrapper {
-        overflow: visible;
-        box-sizing: border-box;
-        width: calc(100vw - var(--sidebar-w));
+        width: 100%;
         max-width: none;
         margin-left: 0;
         margin-right: 0;
-        padding-left: 0;
-        padding-right: 0;
+        left: auto;
+        box-sizing: border-box;
+    }
+
+    /*
+     * Ширина = колонка main (без формул с 100vw — меньше артефактов при зуме).
+     * Отступы как у .main-highlight__inner.
+     */
+    .main__nav-wrapper {
+        overflow: visible;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: calc(4px + 12px);
+        padding-right: var(--content-padding-lg);
         padding-bottom: 6px;
     }
 
@@ -488,15 +496,21 @@
         margin-top: 2px;
         padding: 0;
         box-sizing: border-box;
+        /* Центрируем весь блок ссылок, если он уже полной ширины — поведение как у обычного блока */
+        text-align: center;
     }
 
     .main__nav-list {
-        display: flex;
+        display: inline-flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        align-content: flex-start;
         align-items: center;
+        vertical-align: top;
+        max-width: 100%;
+        text-align: left;
         padding: 0;
-        gap: 10px 20px;
+        gap: 10px 16px;
         white-space: normal;
     }
 
@@ -504,6 +518,15 @@
         display: inline-flex;
         flex-shrink: 0;
     }
+
+    /* Текст пункта не ломается на несколько строк, пока хватает ширины ряда;
+       при нехватке места переносится целый пункт на следующую строку (flex-wrap). */
+    .main__nav-link {
+        white-space: nowrap;
+        word-break: normal;
+        overflow-wrap: normal;
+    }
+
     .main__content {
         width: 100%;
         max-width: var(--container-width-lg);
@@ -533,7 +556,7 @@
 
     .content {
         gap: 32px;
-        padding: 0 var(--content-padding-lg) 40px 0;
+        padding: 0 var(--content-padding-lg) 40px;
         min-width: 0;
     }
 
@@ -579,12 +602,3 @@
     }
 }
 
-@media (min-width: 1220px) {
-    .content__text--continuation-snippet {
-        display: none;
-    }
-
-    .content__text--continuation-full {
-        display: block;
-    }
-}
