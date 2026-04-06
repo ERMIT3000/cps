@@ -1,13 +1,4 @@
-/* Главный экран: .main__*, .content*, кнопка «Читать далее» */
-.main__uslugi {
-    position: static;
-    font-size: clamp(24px, 5vw, 40px);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-left: 0;
-}
-
+/* Главный экран: блоки main, main-highlight, content, read-more */
 .main__container {
     position: relative !important;
     width: 100%;
@@ -72,26 +63,39 @@
     background-color: var(--white);
 }
 
-.main__highlight {
+.main-highlight {
     display: block;
     margin-left: calc(-1 * var(--content-padding));
     padding-left: var(--content-padding);
     width: calc(100% + 2 * var(--content-padding));
     background: transparent;
-}
 
-.main__highlight__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    width: 100%;
-}
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+    }
 
-.main__highlight__title-block {
-    display: flex;
-    align-items: center;
-    gap: 0;
+    &__title-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__title {
+        position: static;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-left: 0;
+    }
+
+    &__actions {
+        display: none;
+    }
 }
 
 .content {
@@ -172,9 +176,6 @@
     object-position: center;
 }
 
-.main__icon {
-    display: none;
-}
 .main__content {
     position: static;
     width: auto;

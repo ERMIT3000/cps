@@ -1,28 +1,41 @@
-import js from "@eslint/js";
-import globals from "globals";
-import { defineConfig } from "eslint/config";
+import js from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import prettier from 'eslint-plugin-prettier';
+import globals from 'globals';
 
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
-
-{
-  "env": {
-    "browser": true,
-    "es2021": true
+export default [
+  {
+    ignores: ['dist/**', 'node_modules/**'],
   },
-  "extends": [
-    "eslint:recommended",
-    "prettier"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "module"
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,mjs,cjs}'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        Swiper: 'readonly',
+      },
+    },
+    plugins: { prettier },
+    rules: {
+      'prettier/prettier': 'error',
+    },
   },
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}]);
+  {
+    files: ['webpack.config.js', 'postcss.config.js'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: globals.node,
+    },
+  },
+  {
+    files: ['eslint.config.mjs'],
+    languageOptions: {
+      sourceType: 'module',
+      globals: globals.node,
+    },
+  },
+  eslintConfigPrettier,
+];
