@@ -115,9 +115,8 @@
     list-style: none;
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
+    padding-left: var(--content-padding);
     gap: 16px;
-    
 }
 
 .header__nav-item {

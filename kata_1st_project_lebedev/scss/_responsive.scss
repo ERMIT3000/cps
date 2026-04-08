@@ -94,24 +94,28 @@
     .main__nav-list {
         padding-right: 0;
     }
+
+    .aside-menu {
+        padding-top: 92px;
+    }
 }
 
 @media (max-width: 420px) {
     .content {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
     }
 
     .content__image {
-        width: calc(100% + 32px);
-        max-width: min(100vw, calc(100% + 32px));
+        width: calc(100% + 2 * var(--content-padding));
+        max-width: min(100vw, calc(100% + 2 * var(--content-padding)));
         min-width: 0;
-        margin-left: -16px;
-        margin-right: -16px;
+        margin-left: calc(-1 * var(--content-padding));
+        margin-right: calc(-1 * var(--content-padding));
     }
 
     .main__nav-list {
-        padding-left: 16px;
+        padding-left: var(--content-padding);
         padding-right: 0;
     }
 }
@@ -119,6 +123,15 @@
 @media (min-width: #{$bp-tablet-min}) {
     :root {
         --header-h: 88px;
+        /* 24px боковой отступ у всех «полевых» элементов (хедер, секции, цены, сайдбар);
+           хайлайт переопределён отдельными правилами с *-md / *-lg */
+        --content-padding: #{$content-padding-md};
+        --sm-inset: #{$content-padding-md};
+        --sm-x: #{$content-padding-md};
+    }
+
+    .aside-menu {
+        padding-top: 116px;
     }
 
     .header__container {
@@ -189,30 +202,41 @@
         gap: 16px;  
     }
 
+    .main-highlight__inner {
+        padding-left: 0;
+        padding-right: var(--content-padding-md);
+    }
+
+    .main-highlight__title-block {
+        padding-left: max(0px, calc(var(--content-padding-md) - 4px - 12px));
+    }
+
     .main__container {
-        padding-bottom: 32px;
+        padding-bottom: 24px;
         min-height: 0;
     }
 
     .content {
         flex-direction: row;
         align-items: flex-start;
+        justify-content: center;
+        flex-wrap: nowrap;
         gap: 32px;
-        padding: 0 var(--content-padding-md) 40px;
+        padding: 0 var(--content-padding-md) 24px;
         min-width: 0;
         box-sizing: border-box;
     }
 
     .content__column {
-        flex: 1 1 48%;
-        min-width: 260px;
-        max-width: 52%;
+        flex: 0 1 48%;
+        min-width: 0;
+        max-width: min(490px, 100%);
     }
 
     .content__image {
-        flex: 1 1 44%;
-        min-width: 220px;
-        max-width: 420px;
+        flex: 0 1 44%;
+        min-width: 0;
+        max-width: min(420px, 100%);
         width: 100%;
         order: 2;
         border-radius: 12px !important;
@@ -224,7 +248,7 @@
     }
 
     .main-highlight__title {
-        margin-left: 0;
+        margin: 0;
         padding-left: 0;
     }
 
@@ -349,55 +373,91 @@
     .header__logo {
         display: block;
         position: fixed;
-        top: 24px;
+        top: 30px;
         left: 24px;
         margin: 0;
         z-index: 1350;
         pointer-events: auto;
     }
 
+    .aside-menu__search {
+        top: 35px;
+    }
+
     main {
         margin-top: 0;
-        padding-top: 0;
+        /* Отступ сверху до хайлайта / навигации (под фиксированным лого в сайдбаре) */
+        padding-top: 42px;
         background: var(--background-main);
     }
 
+    /* Боковые 24px — у ряда .content (текст + фото), сам контейнер на всю ширину main */
     .main__container {
         padding-top: 0;
-        max-width: var(--container-width-lg);
+        max-width: none;
         width: 100%;
-        /* Центрирование без 100vw — стабильнее при зуме браузера */
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
         box-sizing: border-box;
         background: transparent;
         min-height: 0;
         overflow-x: visible;
     }
 
+    /*
+     * Хайлайт на всю ширину main (не 1120): бирюза — у левого края контентной области,
+     * «Услуги…» — первая буква ровно на 24px от левого края main, кнопки — у правого края с 24px.
+     */
+    .main-highlight {
+        position: relative;
+        z-index: 2;
+        border-bottom: none;
+        left: auto;
+        max-width: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        box-sizing: border-box;
+    }
+
+    /* Без min-height — иначе + align-items:center даёт лишний «воздух» сверху вне 42px у main */
     .main-highlight__inner {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 24px;
-        min-height: 72px;
+        width: 100%;
+        max-width: none;
+        /* Стабильно при зуме: отступы от краёв main, не от узкой колонки */
         padding-left: 0;
         padding-right: var(--content-padding-lg);
         box-sizing: border-box;
     }
 
-    .main-highlight__title-block {
+    .main-highlight__head {
         min-width: 0;
         flex: 1 1 220px;
+    }
+
+    .main-highlight__title-block {
+        min-width: 0;
+        flex: 1;
+        /* Первая буква заголовка на 24px от левого края main: 24 − полоска 4 − gap 12 */
+        padding-left: max(0px, calc(var(--content-padding-lg) - 4px - 12px));
     }
 
     .main-highlight__actions {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        flex: 0 1 auto;
+        flex: 0 0 auto;
         min-width: 0;
+        margin-left: auto;
     }
 
     .main-highlight__actions-list {
@@ -456,22 +516,7 @@
         background-image: url('../pics/icons/main-icon-status.svg');
     }
 
-    .main-highlight {
-        position: relative;
-        z-index: 2;
-        border-bottom: none;
-        width: 100%;
-        max-width: none;
-        margin-left: 0;
-        margin-right: 0;
-        left: auto;
-        box-sizing: border-box;
-    }
-
-    /*
-     * Ширина = колонка main (без формул с 100vw — меньше артефактов при зуме).
-     * Отступы как у .main-highlight__inner.
-     */
+    /* Горизонтальные 24px на списке — расстояние до внешнего края бордера ховера первой ссылки */
     .main__nav-wrapper {
         overflow: visible;
         box-sizing: border-box;
@@ -479,8 +524,8 @@
         max-width: none;
         margin-left: 0;
         margin-right: 0;
-        padding-left: calc(4px + 12px);
-        padding-right: var(--content-padding-lg);
+        padding-left: 0;
+        padding-right: 0;
         padding-bottom: 6px;
     }
 
@@ -496,40 +541,44 @@
         margin-top: 2px;
         padding: 0;
         box-sizing: border-box;
-        /* Центрируем весь блок ссылок, если он уже полной ширины — поведение как у обычного блока */
-        text-align: center;
+        text-align: left;
     }
 
     .main__nav-list {
-        display: inline-flex;
+        display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-content: flex-start;
-        align-items: center;
-        vertical-align: top;
-        max-width: 100%;
+        align-items: flex-start;
+        width: 100%;
+        max-width: none;
         text-align: left;
-        padding: 0;
+        padding-left: var(--content-padding-lg);
+        padding-right: var(--content-padding-lg);
         gap: 10px 16px;
         white-space: normal;
     }
 
     .main__nav-item {
-        display: inline-flex;
-        flex-shrink: 0;
+        display: flex;
+        flex: 0 1 auto;
+        min-width: 0;
+        max-width: 100%;
     }
 
-    /* Текст пункта не ломается на несколько строк, пока хватает ширины ряда;
-       при нехватке места переносится целый пункт на следующую строку (flex-wrap). */
+    /* Перенос текста внутри пункта и перенос пунктов на следующую строку */
     .main__nav-link {
-        white-space: nowrap;
+        white-space: normal;
         word-break: normal;
-        overflow-wrap: normal;
+        overflow-wrap: break-word;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .main__content {
         width: 100%;
-        max-width: var(--container-width-lg);
+        max-width: none;
         margin-top: 0;
         min-width: 0;
         box-sizing: border-box;
@@ -537,15 +586,22 @@
 
     .main__content .content {
         align-items: flex-start;
+        justify-content: center;
+        flex-wrap: nowrap;
         min-width: 0;
+        box-sizing: border-box;
+        padding-left: var(--content-padding-lg);
+        padding-right: var(--content-padding-lg);
+        padding-bottom: 24px;
     }
 
     .main__content .content__column {
         align-self: flex-start;
         min-height: 0;
-        flex: 1 1 42%;
-        min-width: 260px;
-        max-width: 500px;
+        flex: 0 1 42%;
+        max-width: min(490px, 100%);
+        min-width: 0;
+        box-sizing: border-box;
     }
 
     .main__content .content__texts {
@@ -556,22 +612,21 @@
 
     .content {
         gap: 32px;
-        padding: 0 var(--content-padding-lg) 40px;
         min-width: 0;
     }
 
     .content__column {
-        width: auto;
-        max-width: 500px;
+        flex: 0 1 42%;
+        max-width: min(490px, 100%);
+        min-width: 0;
         padding-left: 0;
         min-height: 0;
-        flex: 1 1 42%;
-        min-width: 260px;
+        box-sizing: border-box;
     }
 
     .content__image {
-        flex: 1 1 52%;
-        min-width: 260px;
+        flex: 0 1 52%;
+        min-width: 0;
         max-width: min(620px, 100%);
         width: 100%;
         align-self: flex-start;
@@ -581,7 +636,7 @@
     .aside-menu,
     .aside-menu.aside-menu--open {
         left: 0;
-        padding-top: clamp(72px, 12vh, 88px);
+        padding-top: 116px;
         box-shadow: none;
         transition: none;
         z-index: 1100;

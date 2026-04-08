@@ -10,7 +10,7 @@ main {
     min-height: 60vh;
     height: auto !important;
     padding-top: 0;
-    padding-bottom: 40px;
+    padding-bottom: 24px;
     background: transparent;
     overflow-x: hidden;
 }
@@ -41,6 +41,7 @@ main {
     gap: 8px;
     padding: 0 var(--content-padding);
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .main__nav-item {
@@ -68,11 +69,12 @@ main {
     background-color: var(--white);
 }
 
+/* Полоса на всю ширину колонки; отступы только у содержимого (заголовок как у остального текста) */
 .main-highlight {
     display: block;
-    margin-left: calc(-1 * var(--content-padding));
-    padding-left: var(--content-padding);
-    width: calc(100% + 2 * var(--content-padding));
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
     background: transparent;
 
     &__inner {
@@ -81,12 +83,33 @@ main {
         align-items: stretch;
         gap: 0;
         width: 100%;
+        /* Полоска у левого края ряда; отступ справа как у секций / контента */
+        padding-left: 0;
+        padding-right: var(--content-padding);
+        box-sizing: border-box;
+    }
+
+    &__head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    &__accent {
+        flex-shrink: 0;
+        display: block;
     }
 
     &__title-block {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+        flex: 1;
+        min-width: 0;
+        /* Первая буква заголовка на линии с абзацами: content-padding − (полоска + gap) */
+        padding-left: max(0px, calc(var(--content-padding) - 4px - 12px));
+        box-sizing: border-box;
     }
 
     &__title {
@@ -95,7 +118,7 @@ main {
         font-weight: 700;
         line-height: 1.2;
         letter-spacing: -0.02em;
-        margin-left: 0;
+        margin: 0;
     }
 
     &__actions {
@@ -106,7 +129,8 @@ main {
 .content {
     position: relative;
     width: 100%;
-    padding: 0 var(--content-padding) 40px;
+    padding: 0 var(--content-padding) 24px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -192,7 +216,8 @@ main {
 
 .main__content {
     position: static;
-    width: auto;
+    width: 100%;
+    min-width: 0;
     height: auto;
     top: auto;
     left: auto;

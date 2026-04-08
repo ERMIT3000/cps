@@ -13,7 +13,8 @@ $link-muted-hover: #6f6f6f;
 $border-light: #eaeaea;
 
 $content-max-width: 1440px;
-$content-padding: 24px;
+/* мобильный: 16px. Планшет/десктоп: в _responsive.scss для :root задаётся --content-padding: 24px и выравнивание сайдменю (--sm-inset, --sm-x). */
+$content-padding: 16px;
 $content-padding-md: 24px;
 $content-padding-lg: 24px;
 $container-width-sm: 768px;
@@ -49,6 +50,7 @@ $bp-tablet-max: $bp-desktop-min - 1px;
     --container-width-lg: #{$container-width-lg};
     --sidebar-w: #{$sidebar-w};
     --sm-x: clamp(16px, 4vw, 24px);
+    /* до 20px на мобилке; с 768px в _responsive.scss → 24px вровень с сеткой */
     --sm-inset: clamp(12px, 3vw, 20px);
     --sm-py: clamp(4px, 1.1vh, 10px);
     --sm-strip: clamp(4px, 1vh, 10px);
